@@ -1,5 +1,15 @@
 # Cloud Computing with AWS
 
+### Cloud Computing and AWS
+
+#### What is cloud computing, what are the benefits and who is using it?
+
+Cloud computing is the on-demand delivery of IT resources over the Internet with pay-as-you-go pricing. Instead of buying, owning, and maintaining physical data centers and servers, you can access technology services, such as computing power, storage, and databases, on an as-needed basis from a cloud provider. The benefits are flexibility, efficiency and strategic value. Many people use it in their day to day life, from gaming on steam to streaming on netflix.
+
+#### What is AWS, what are the advantages and who uses it?
+
+Amazon Web Services is a subsidiary of Amazon providing on-demand cloud computing platforms and APIs to individuals, companies, and governments, on a metered pay-as-you-go basis. AWS is seperating into 3 sections, infrastucture as a service (IaaS), platform as a service (PaaS) and software as a service (SaaS). The advantages are that its easy to use, flexible and secure. It is used by many large companies such as netflix, amazon and ebay.
+
 ### Setting up an EC2 instance and begin the node application
 
 1) First order of business is setting up the EC2 instance, you do this by accessing the AWS website and going through all the steps required to begin the instance, including setting ports for HTTP 80, SSH 22 and port 3000.
