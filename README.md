@@ -82,3 +82,7 @@ net:
 ```
 4) You must then enter you app via ssh and go into `/etc/environment` where you must input the line `export DB_HOST=mongodb://(your database ip):27017/posts`. This will then persist the environment variable.
 5) Then finally you can seed the database by entering `app/seeds` and running `node seeds.js`, then following steps prior enter `app/` and run `node app.js`. The /posts webpage should now appear in your browser.
+
+### Diagrams and more
+#### AWS with MongoDB Diagram
+![AWS with MongoDB Diagram](images/aws.png)
