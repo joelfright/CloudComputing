@@ -48,3 +48,37 @@ server {
         }
 }
 ```
+
+### Setting up a AWS with a MongoDB database
+
+1) In order to setup with a mongodb database you must first complete all prior steps. Then you must go into the EC2 management console and begin a new instance, with this you must set it up and use the inbound rules as your SSH 22 and the db connection ip which is your app ip which has the port 27017.
+2) You must then install a provision file onto your database ssh by using this provision file. Don't forget, if you have ported this via the scp command you must use `sed -i -e 's/\r$//' scriptname.sh` in order to fix the dos to linux error.
+```
+#!/bin/bash
+
+wget -qO - https://www.mongodb.org/static/pgp/server-4.2.asc | sudo apt-key add -
+echo "deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/4.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.2.list
+sudo apt-get update -y
+sudo apt-get upgrade -y
+sudo apt-get install -y mongodb-org
+sudo systemctl restart mongod
+sudo systemctl enable mongod
+```
+3) You must then ssh into your database and change the mongod.conf by going to `/etc/mongod.conf` and changing it to what is seen below, this will allow for the mongo database to connect to the app.
+```
+storage:
+  dbPath: /var/lib/mongodb
+  journal:
+    enabled: true
+
+systemLog:
+  destination: file
+  logAppend: true
+  path: /var/log/mongodb/mongod.log
+
+net:
+  port: 27017
+  bindIp: 0.0.0.0
+```
+4) You must then enter you app via ssh and go into `/etc/environment` where you must input the line `export DB_HOST=mongodb://(your database ip):27017/posts`. This will then persist the environment variable.
+5) Then finally you can seed the database by entering `app/seeds` and running `node seeds.js`, then following steps prior enter `app/` and run `node app.js`. The /posts webpage should now appear in your browser.
